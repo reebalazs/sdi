@@ -5644,6 +5644,13 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
 /*!
  * Bootstrap Responsive v2.1.1
  *
@@ -7329,8 +7336,4 @@ a.badge:hover {
     height: auto !important;
     overflow: visible !important;
   }
-}
-.demo {
-  /* Nothing done in here */
-
 }
