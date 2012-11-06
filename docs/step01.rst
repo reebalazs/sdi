@@ -2,7 +2,7 @@
 Step 01: Hello World in Pyramid
 ===============================
 
-Before we get into Substance D, we need to get Pyramid installed and a
+Before we get into an SDI, we need to get Pyramid installed and a
 sample application working.
 
 Goals
@@ -18,18 +18,6 @@ Objectives
 - Create a module with a view that acts as an HTTP server
 
 - Visit the URL in your browser
-
-Background
-==========
-
-Microframeworks are all the rage these days. They provide low-overhead
-on execution. But also, they have a low mental overhead: they do so
-little, the only things you have to worry about are *your things*.
-
-Pyramid is special because it can act as a single-file module
-microframework. You have a single Python file that can be executed
-directly by Python. But Pyramid also scales to the largest of
-applications.
 
 Steps
 =====

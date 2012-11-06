@@ -7,7 +7,9 @@ here = os.path.abspath(os.path.dirname(__file__))
 requires = [
     'pyramid',
     'waitress',
-    ]
+    'nose',
+    'WebTest'
+]
 
 setup(name='sdi',
       version='0.0',
@@ -17,7 +19,7 @@ setup(name='sdi',
           "Framework :: Pylons",
           "Topic :: Internet :: WWW/HTTP",
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-          ],
+      ],
       author='',
       author_email='',
       url='',
@@ -28,5 +30,5 @@ setup(name='sdi',
       install_requires=requires,
       tests_require=requires,
       test_suite="sdi",
-      )
+)
 

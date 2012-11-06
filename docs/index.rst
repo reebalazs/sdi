@@ -1,5 +1,5 @@
-Building an SDI Tutorial
-========================
+"Building an SDI" Tutorial
+==========================
 
 Substance D is a great framework for building a certain style of
 content-oriented applications. It includes a slick admin UI called the
@@ -17,9 +17,10 @@ Steps
 .. toctree::
    :maxdepth: 1
 
-   intro.rst
-   setup.rst
-   step01.rst
+   intro
+   setup
+   step01
+   step02
 
 Indices and tables
 ------------------
