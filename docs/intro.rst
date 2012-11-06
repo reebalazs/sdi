@@ -10,10 +10,6 @@ this SDI? Who is it for, not for, and why is it needed?
 Outline
 =======
 
-- Simple Pyramid
-
-- Views, templates, static with tests
-
 - Simple TB
 
 - TB and LESS
