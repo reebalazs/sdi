@@ -2,6 +2,13 @@
 Step 03: Twitter Bootstrap Fluid
 ================================
 
+- TB
+
+- Responsive
+
+- Fluid
+
+- LESS compilation
 
 Goals
 =====
