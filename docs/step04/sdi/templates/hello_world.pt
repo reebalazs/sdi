@@ -1,0 +1,8 @@
+<metal:block use-macro="main_template">
+
+    <div metal:fill-slot="content" class="span12">
+        <h1>${layout.project_title}</h1>
+        <p>Content here.</p>
+    </div>
+
+</metal:block>
