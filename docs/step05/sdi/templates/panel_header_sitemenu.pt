@@ -1,0 +1,7 @@
+<ul class="nav">
+    <tal:item tal:repeat="item items">
+        <li class="${item.active}">
+            <a href="${item.url}">${item.title}</a>
+        </li>
+    </tal:item>
+</ul>

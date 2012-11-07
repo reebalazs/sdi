@@ -1,8 +1,8 @@
 =======================
-Step 04: Pyramid Layout
+Step 05: Pyramid Panels
 =======================
 
-- Combine templating and code for SDI into a "layout"
+- Break SDI into re-usable, overridable panels
 
 
 Goals
@@ -11,19 +11,13 @@ Goals
 Notes
 =====
 
-- Adds pyramid_layout to setup.py
+- Panel 1: The menu
 
-- Add to .ini
+- Panel 2: A "grid"
 
-- XXX pyramid_layout in .ini doesn't load, had to put in __init__.
+- Slots for head/tail first/last
 
-- Same as reload_templates
-
-- Make helpers in the Layout class for static stuff
-
-- We now have a couple of views
-
-- Links between "Home" and "Contents"
+- configure include for step06
 
 Steps
 =====

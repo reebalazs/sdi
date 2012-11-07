@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th tal:repeat="c columns">${c.title}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr tal:repeat="i items">
+        <td tal:repeat="c columns">
+            ${i[c.name]}
+        </td>
+    </tr>
+    </tbody>
+</table>
