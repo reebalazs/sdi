@@ -42,3 +42,8 @@ the topic being discussed.
 
 The example files are available for those that don't want to enter the
 code as part of the tutorial process.
+
+Notes
+=====
+
+- Install node, npm, less

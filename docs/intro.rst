@@ -12,11 +12,7 @@ Outline
 
 - Simple TB
 
-- TB and LESS
-
-- require.js
-
-- Basic SDI ideas with responsiveness
+- TB, responsive, fluid, LESS
 
 - Pyramid Layout
 
@@ -30,4 +26,6 @@ Outline
 - Simple Juicing
 
 - Gesture support
+
+- require.js
 

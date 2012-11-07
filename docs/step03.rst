@@ -2,6 +2,8 @@
 Step 03: Twitter Bootstrap Fluid
 ================================
 
+- Class-based view
+
 - TB
 
 - Responsive
@@ -13,6 +15,10 @@ Step 03: Twitter Bootstrap Fluid
 Goals
 =====
 
+Notes
+=====
+
+- node less-watch-compiler.js . .
 
 Steps
 =====
