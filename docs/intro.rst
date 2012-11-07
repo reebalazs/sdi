@@ -10,16 +10,10 @@ this SDI? Who is it for, not for, and why is it needed?
 Outline
 =======
 
-- Simple TB
+- Panels
 
-- TB, responsive, fluid, LESS
-
-- Pyramid Layout
-
-- Layout customization (filling slots, static assets,
+- Layout customization (filling slots, static assets, overriding panel,
   overriding layout template, new layout class, etc.)
-
-- Panels and overriding
 
 - PhantomJS testing
 

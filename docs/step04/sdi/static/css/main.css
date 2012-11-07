@@ -5759,6 +5759,9 @@ body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
+.brand img {
+  height: 16px;
+}
 /*!
  * Bootstrap Responsive v2.2.1
  *

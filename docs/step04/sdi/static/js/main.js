@@ -1,3 +1,3 @@
 $(document).ready(function(){
-    $('#hero').text('Hello from JS.');
+    $('#filler').text('Hello from JS.');
 });

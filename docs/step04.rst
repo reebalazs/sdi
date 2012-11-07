@@ -21,6 +21,10 @@ Notes
 
 - Make helpers in the Layout class for static stuff
 
+- We now have a couple of views
+
+- Links between "Home" and "Contents"
+
 Steps
 =====
 
