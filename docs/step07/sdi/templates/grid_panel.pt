@@ -7,9 +7,10 @@
     // wiring will be postponed to tail
     (window.sdiTailLast = window.sdiTailLast || []).push(
         function wireGrid() {
+            var html_id = '${html_id}';
             window.console && console.log &&
                 // Show in the debugger that we have correct jQuery.
-                console.log('in-panel wiring\n\njQuery = ', $);
+                console.log('in-panel wiring\n\npanel = grid, html_id = ', html_id, ', jQuery = ', $);
         }
     );
 </script>
