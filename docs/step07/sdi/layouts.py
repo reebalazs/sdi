@@ -11,6 +11,7 @@ class SDIMainLayout(object):
         self.username = 'Some User'
         self.user_url = '/some_user'
         self.html_id_next = 0
+        self.client_components = set()
 
     def tb_url(self, path):
         """ Shorten the path to Twitter Bootstrap assets  """
@@ -43,6 +44,12 @@ class SDIMainLayout(object):
             html_id = "%s%04i" % (prefix, self.html_id_next)
             self.html_id_next += 1
         return html_id
+
+    def select_client_component(self, *names):
+        self.client_components.update(names)
+    
+    def has_client_component(self, name):
+        return name in self.client_components
 
 
     @property

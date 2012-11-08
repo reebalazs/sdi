@@ -34,6 +34,7 @@ def grid(context, request, columns, items,
 
     layout = request.layout_manager.layout
     html_id = layout.html_id(html_id=html_id)  # autogenerate id if needed
+    layout.select_client_component('slickgrid')
 
     return dict(
         columns=columns,

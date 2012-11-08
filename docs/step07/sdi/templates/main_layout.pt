@@ -117,8 +117,8 @@
 <script type="text/javascript"
         src="${layout.tb_url('js/bootstrap-typeahead.js')}"></script>
 
-<!-- TODO conditional component selection -->
 <!-- slickgrid -->
+<tal:component condition="layout.has_client_component('slickgrid')">
 <script type="text/javascript"
         src="${layout.sg_url('lib/jquery-ui-1.8.16.custom.min.js')}"></script>
 <script type="text/javascript"
@@ -137,6 +137,7 @@
         src="${layout.sg_url('controls/slick.columnpicker.js')}"></script>
 <script type="text/javascript"
         src="${layout.sdi_js('slickgrid.js')}"></script>
+</tal:component>
 <!-- /slickgrid -->
 
 <script type="text/javascript"
