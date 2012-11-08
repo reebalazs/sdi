@@ -109,6 +109,18 @@
 
 <script type="text/javascript"
         src="${layout.sdi_js('main.js')}"></script>
+
+<script type="text/javascript">
+    (function ($) {
+        // postponed execution of in-panel wiring
+        // enables us to load all js in tail
+        $.each(window.sdiTailLast || [], function (index, f) {
+            f();
+        });
+    })(jQuery);
+</script>
+
+
 <metal:content define-slot="tail_last"/>
 </body>
 </html>

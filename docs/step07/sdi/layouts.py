@@ -10,6 +10,7 @@ class SDIMainLayout(object):
         self.home_url = request.application_url
         self.username = 'Some User'
         self.user_url = '/some_user'
+        self.html_id_next = 0
 
     def tb_url(self, path):
         """ Shorten the path to Twitter Bootstrap assets  """
@@ -31,7 +32,15 @@ class SDIMainLayout(object):
         p = 'sdi:static/images/' + path
         return self.request.static_url(p)
 
+    def html_id(self, html_id=None, prefix='sdi-'):
+        """Return a sequential html id"""
+        if html_id is None:
+            html_id = "%s%04i" % (prefix, self.html_id_next)
+            self.html_id_next += 1
+        return html_id
+
 
     @property
     def project_title(self):
         return 'Substance D'
+        

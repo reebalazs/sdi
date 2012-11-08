@@ -1,3 +1,21 @@
+
+<div id="${html_id}" class="slickgrid-wrapper">
+
+</div>
+
+<script type="text/javascript">
+    // wiring will be postponed to tail
+    (window.sdiTailLast = window.sdiTailLast || []).push(
+        function wireGrid() {
+            window.console && console.log &&
+                // Show in the debugger that we have correct jQuery.
+                console.log('in-panel wiring\n\njQuery = ', $);
+        }
+    );
+</script>
+
+<hr>
+
 <table class="table table-striped">
     <thead>
     <tr>
