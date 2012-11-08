@@ -9,7 +9,8 @@ requires = [
     'pyramid_layout',
     'waitress',
     'nose',
-    'WebTest'
+    'WebTest',
+    'nodeenv'
 ]
 
 setup(name='sdi_app',
@@ -31,5 +32,9 @@ setup(name='sdi_app',
       install_requires=requires,
       tests_require=requires,
       test_suite="sdi_app",
+      entry_points = """\
+      [paste.app_factory]
+      main = sdi_app:main
+      """,
 )
 
