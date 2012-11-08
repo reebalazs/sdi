@@ -16,21 +16,6 @@ Each "step" in the tutorial is its own Python package. Thus,
 at the start of each tutorial step, you will see a reminder to
 develop-install that step.
 
-Steps
-=====
-
-#. Open a shell window and ``cd`` to a working directory.
-
-#. ``$ mkdir tutorial_workspace; cd tutorial_workspace``
-
-#. ``$ virtualenv env``
-
-#. ``$ export PATH=/path/to/tutorial_workspace/env/bin:$PATH``
-
-#. ``$ which easy_install``
-
-   This should report the ``easy_install`` from ``env/bin``.
-
 
 Code Examples
 =============
@@ -42,8 +27,3 @@ the topic being discussed.
 
 The example files are available for those that don't want to enter the
 code as part of the tutorial process.
-
-Notes
-=====
-
-- Install node, npm, less
