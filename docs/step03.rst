@@ -12,45 +12,38 @@ Step 03: Twitter Bootstrap Fluid
 
 - LESS compilation
 
-Goals
-=====
-
 Notes
 =====
 
-- node less-watch-compiler.js . .
+- Added ``nodeenv`` to ``setup.py``
 
-Steps
-=====
+Compiling LESS
+==============
 
-#. ``$ cp -r step01 step 02; cd step02; python setup.py develop``
+You can run an autocompiler which watches for any changed .less files
+in a directory, runs ``lessc``, and compiles.
 
-#. Copy the following into ``step02/development.ini``:
+First we re-do setup.py to get ``nodeenv``:
 
-   .. literalinclude:: step02/development.ini
-      :linenos:
+#. ``cd step04``
 
-#. Copy the following into ``step02/sdi/__init__.py``:
+#. ``../../env27/bin/python ./setup.py develop``
 
-   .. literalinclude:: step02/sdi/__init__.py
-      :linenos:
+Now move up and make a new "nodenv" (an isolated virtualenv for NodeJS):
 
-#. Copy the following into ``step02/sdi/views.py``:
+#. ``cd ../..``
 
-   .. literalinclude:: step02/sdi/views.py
-      :linenos:
+#. ``env27/bin/nodeenv env_node``
 
-#. ``mkdir templates``
+   This downloads and installs NodeJS into the ``env_node`` directory.
 
-#. Copy the following into ``step02/sdi/templates/hello_world.pt``:
+#. ``. env_node/bin/activate``
 
-   .. literalinclude:: step02/sdi/templates/hello_world.pt
-      :linenos:
+#. ``npm install -g less``
 
-#. ``$ pserve development.ini``
+Now that we have NodeJS and LESS installed, we can run the
+always-running compiler:
 
-#. Open ``http://127.0.0.1:6543/`` in your browser.
+#. ``cd docs/step03/src/sdi/static/css``
 
-Analysis
-========
-
+#. ``node less-watch-compiler.js . .``

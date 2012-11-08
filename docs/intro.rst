@@ -99,7 +99,6 @@ To Do
 
 - Get the tests to work for pyramid_layout
 
-- use = call:sdi_app:main
 
 Outline
 =======
