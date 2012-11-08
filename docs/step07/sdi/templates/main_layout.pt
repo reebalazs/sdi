@@ -9,6 +9,15 @@
     <metal:content define-slot="head_first"/>
     <link rel="stylesheet" href="${layout.sdi_css('main.css')}"/>
 
+    <!-- slickgrid -->
+    <link rel="stylesheet"
+          href="${layout.sg_url('css/smoothness/jquery-ui-1.8.16.custom.css')}" />
+    <link rel="stylesheet"
+          href="${layout.sg_url('slick.grid.css')}" />
+    <link rel="stylesheet"
+          href="${layout.sg_url('controls/slick.columnpicker.css')}" />
+    <!-- /slickgrid -->
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script type="text/javascript"
@@ -26,6 +35,7 @@
           href="${layout.tb_url('ico/apple-touch-icon-72-precomposed.png')}"/>
     <link rel="apple-touch-icon-precomposed"
           href="${layout.tb_url('ico/apple-touch-icon-57-precomposed.png')}"/>
+
     <metal:content define-slot="head_last"/>
 </head>
 
@@ -107,13 +117,35 @@
 <script type="text/javascript"
         src="${layout.tb_url('js/bootstrap-typeahead.js')}"></script>
 
+<!-- TODO conditional component selection -->
+<!-- slickgrid -->
+<script type="text/javascript"
+        src="${layout.sg_url('lib/jquery-ui-1.8.16.custom.min.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('lib/jquery.event.drag-2.0.min.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('slick.dataview.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('slick.core.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('slick.grid.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('slick.editors.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('plugins/slick.rowselectionmodel.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sg_url('controls/slick.columnpicker.js')}"></script>
+<script type="text/javascript"
+        src="${layout.sdi_js('slickgrid.js')}"></script>
+<!-- /slickgrid -->
+
 <script type="text/javascript"
         src="${layout.sdi_js('main.js')}"></script>
 
 <script type="text/javascript">
     (function ($) {
         // postponed execution of in-panel wiring
-        // enables us to load all js in tail
+        // enables us to load all js in tail.
         $.each(window.sdiTailLast || [], function (index, f) {
             f();
         });

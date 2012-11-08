@@ -32,6 +32,11 @@ class SDIMainLayout(object):
         p = 'sdi:static/images/' + path
         return self.request.static_url(p)
 
+    def sg_url(self, path):
+        """ Shorten the path to SlickGrid resources  """
+        p = 'sdi:static/SlickGrid-2.0.2/' + path
+        return self.request.static_url(p)
+
     def html_id(self, html_id=None, prefix='sdi-'):
         """Return a sequential html id"""
         if html_id is None:
