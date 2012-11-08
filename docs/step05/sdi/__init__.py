@@ -1,4 +1,5 @@
 from pyramid.config import Configurator
+from sdi.config import includeme
 
 def main(global_config, **settings):
     config = Configurator()

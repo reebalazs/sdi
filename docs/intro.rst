@@ -6,6 +6,8 @@ This tutorial envisions a certain idea for an SDI. Before getting into
 the technical steps of building it, we need to set the scene. What is
 this SDI? Who is it for, not for, and why is it needed?
 
+- Commitment to NodeJS
+
 To Do
 =====
 
@@ -17,19 +19,19 @@ To Do
 
 - Get the tests to work for pyramid_layout
 
+- use = call:sdi_app:main
+
 Outline
 =======
 
-- Split
-
-- Layout customization (filling slots, static assets, overriding panel,
-  overriding layout template, new layout class, etc.)
-
 - Zombie testing
 
-- Simple Juicing
+- Simple JS concatenation with UglifyJS under Node
 
 - Gesture support
 
 - require.js
 
+- TB forms with jqBootstrapValidation
+
+- Localization
