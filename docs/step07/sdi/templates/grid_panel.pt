@@ -1,4 +1,8 @@
 
+<b>Work in progress here.</b>
+<br>
+<br>
+
 <div id="${html_id}" class="slickgrid-wrapper"
      style="width:100%;height:400px"></div>
 
@@ -6,10 +10,9 @@
     // wiring will be postponed to tail
     (window.sdiTailLast = window.sdiTailLast || []).push(
         function wireGrid() {
-            var html_id = '${html_id}';
-            window.console && console.log &&
-                // Show in the debugger that we have correct jQuery.
-                console.log('in-panel wiring\n\npanel = grid, html_id = ', html_id, ', jQuery = ', $);
+            $('#${html_id}').slickgrid($.extend({}, {
+                // more defaults can come here
+            }, ${widget_options}));
         }
     );
 </script>
