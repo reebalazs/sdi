@@ -39,6 +39,10 @@
     <!-- jQuery loads upfront, to allow using $ from inline code -->
     <script type="text/javascript"
         src="${request.static_url('sdi:static/js/jquery-1.8.2.js')}"></script>
+    <script language="javascript" type="text/javascript">
+        // Ready hold until our last deferred has executed
+        jQuery.holdReady(true);
+    </script>
     
     <metal:content define-slot="head_last"/>
 </head>
@@ -94,57 +98,61 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <metal:content define-slot="tail_first"/>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-transition.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-alert.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-modal.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-dropdown.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-scrollspy.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-tab.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-tooltip.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-popover.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-button.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-collapse.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-carousel.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.tb_url('js/bootstrap-typeahead.js')}"></script>
 
 <!-- slickgrid -->
 <tal:component condition="layout.has_client_component('slickgrid')">
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('lib/jquery-ui-1.8.16.custom.min.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('lib/jquery.event.drag-2.0.min.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('slick.dataview.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('slick.core.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('slick.grid.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('slick.editors.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('plugins/slick.rowselectionmodel.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sg_url('controls/slick.columnpicker.js')}"></script>
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sdi_js('slickgrid.js')}"></script>
 </tal:component>
 <!-- /slickgrid -->
 
-<script type="text/javascript"
+<script type="text/javascript" defer
         src="${layout.sdi_js('main.js')}"></script>
 
 <metal:content define-slot="tail_last"/>
+
+<!-- ready hold is released from layout-prologue.js -->
+<script type="text/javascript" src="${layout.sdi_js('layout-prologue.js')}" defer></script>
+
 </body>
 </html>
