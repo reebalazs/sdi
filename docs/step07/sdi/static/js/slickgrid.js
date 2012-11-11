@@ -66,14 +66,6 @@
 
         this.origColumns = this.columns.slice();
 
-        var gridOptions = {
-            editable: false,
-            enableAddRow: true,
-            enableCellNavigation: true,
-            asyncEditorLoading: true,
-            forceFitColumns: false
-        };
-
         var sortcol = "title";
         var sortdir = 1;
         var searchString = "";
