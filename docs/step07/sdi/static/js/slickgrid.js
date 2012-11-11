@@ -129,11 +129,11 @@
             var html_id = 'sdi-0000'; // XXX XXX Now just manually...
 
             dataView = new Slick.Data.DataView({inlineFilters: true});
-            grid = new Slick.Grid($('#' + html_id), dataView, this.columns, gridOptions);
+            grid = new Slick.Grid($('#' + html_id), dataView, this.columns, this.options.slickgridOptions);
             grid.setSelectionModel(new Slick.RowSelectionModel());
 
             var columnpicker = new Slick.Controls.ColumnPicker(
-                    this.columns, grid, gridOptions);
+                    this.columns, grid, this.options.slickgridOptions);
 
 
             // move the filter panel defined in a hidden div into grid top panel

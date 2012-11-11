@@ -43,7 +43,12 @@ def grid(context, request, columns, items,
     html_id = layout.html_id(html_id=html_id)    # autogenerate id if needed
     layout.select_client_component('slickgrid')
     slickgrid_options = dict(
-        # default values come here
+        # default options for SlickGrid come here
+        editable = False,
+        enableAddRow = True,
+        enableCellNavigation = True,
+        asyncEditorLoading = True,
+        forceFitColumns = False,
         ).update(slickgrid_options or {})
 
 
@@ -63,6 +68,8 @@ def grid(context, request, columns, items,
         {"id": "finish", "name": "Finish", "field": "finish", "minWidth": 60,
             "editor": "date", "sortable": True}
         ];
+
+
     return dict(
         old_columns = old_columns,
         old_items = old_items,
