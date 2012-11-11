@@ -9,7 +9,8 @@
   * ================================= */
 
   var SlickGrid = function ( element, options ) {
-    this.init('slickgrid', element, options)
+    options = $.extend(true, {}, $.fn.slickgrid.defaults, options);
+    this.init('slickgrid', element, options);
   }
 
 
@@ -17,36 +18,53 @@
 
     constructor: SlickGrid
 
+  , processColumns: function () {
+        var self = this;
+        var results = [];
+        // Fetch the configuration if we have any.
+        // We walk up the DOM and use the first data attribute
+        // with the key configName.
+        var configName = this.options.configName;
+        var $el = this.element;
+        var config;
+        while ($el.length > 0) {
+            config = $el.data(configName);
+            if (config) {
+                break;
+            }
+            $el = $el.parent();
+        }
+        $.each(this.options.columns, function(index, columnDef) {
+            var defaults = {};
+            // id defaults to columnDef.field
+            defaults.id = columnDef.field;
+            if (config) {
+                // resolve formatter from map
+                defaults.formatter = config.formatters[columnDef.formatterName];
+                // resolve validator from map
+                defaults.validator = config.validators[columnDef.validatorName];
+                // resolve editor from map
+                defaults.editor = config.editors[columnDef.editorName];
+            }
+            var newColumnDef = $.extend({}, defaults, columnDef);
+            results.push(newColumnDef);
+        });
+        return results;
+    }
+
   , init: function (type, element, options) {
         var self = this;
-
-        function requiredFieldValidator(value) {
-            if (value === null || value === undefined || !value.length) {
-                return {valid: false, msg: "This is a required field"};
-            }
-            else {
-                return {valid: true, msg: null};
-            }
-        }
+        this.options = options;
+        this.element = $(element);
 
         var dataView;
         var grid;
         var data = [];
-        var columns = [
-            {id: "sel", name: "#", field: "num", behavior: "select",
-                cssClass: "cell-selection", width: 40, cannotTriggerInsert: true,
-                resizable: false, selectable: false},
-            {id: "title", name: "Title", field: "title", width: 120, minWidth: 120,
-                cssClass: "cell-title", editor: Slick.Editors.Text,
-                validator: requiredFieldValidator, sortable: true},
-            {id: "duration", name: "Duration", field: "duration",
-                editor: Slick.Editors.Text, sortable: true},
-            {id: "start", name: "Start", field: "start", minWidth: 60,
-                editor: Slick.Editors.Date, sortable: true},
-            {id: "finish", name: "Finish", field: "finish", minWidth: 60,
-                editor: Slick.Editors.Date, sortable: true}
-        ];
-        var origColumns = columns.slice();
+
+        // Resolve non-JSON marshallable functions
+        this.columns = this.processColumns();
+
+        this.origColumns = this.columns.slice();
 
         var gridOptions = {
             editable: false,
@@ -111,11 +129,11 @@
             var html_id = 'sdi-0000'; // XXX XXX Now just manually...
 
             dataView = new Slick.Data.DataView({inlineFilters: true});
-            grid = new Slick.Grid('#' + html_id, dataView, columns, gridOptions);
+            grid = new Slick.Grid($('#' + html_id), dataView, this.columns, gridOptions);
             grid.setSelectionModel(new Slick.RowSelectionModel());
 
             var columnpicker = new Slick.Controls.ColumnPicker(
-                    columns, grid, gridOptions);
+                    this.columns, grid, gridOptions);
 
 
             // move the filter panel defined in a hidden div into grid top panel
@@ -237,18 +255,18 @@
                     // XXX this is a little rough... we'd need to be smarter here
                     // to conserve our current columns sizes and order.
                     if (wide) {
-                        if (columns.length < 5) {
-                            columns.push(origColumns[3]);
-                            columns.push(origColumns[4]);
+                        if (self.columns.length < 5) {
+                            self.columns.push(self.origColumns[3]);
+                            self.columns.push(self.origColumns[4]);
                         }
                     } else {
-                        if (columns.length > 3) {
-                            columns = origColumns.slice(0, 3);
+                        if (self.columns.length > 3) {
+                            self.columns = self.origColumns.slice(0, 3);
                         }
                     }
 
                     // and resize.
-                    grid.setColumns(columns);
+                    grid.setColumns(self.columns);
                     grid.autosizeColumns();
                     timer = null;
                 }, 400);
@@ -283,6 +301,8 @@
   $.fn.slickgrid.Constructor = SlickGrid;
 
   $.fn.slickgrid.defaults = {
+      columns: []
+      //configName: null     // contains non-json parts of column, registered as data with this key. (...)
   }
 
 }(window.jQuery);

@@ -145,6 +145,8 @@
         src="${layout.sg_url('controls/slick.columnpicker.js')}"></script>
 <script type="text/javascript" defer
         src="${layout.sdi_js('slickgrid.js')}"></script>
+<script type="text/javascript" defer
+        src="${layout.sdi_js('slickgrid-config.js')}"></script>
 </tal:component>
 <!-- /slickgrid -->
 

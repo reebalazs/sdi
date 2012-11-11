@@ -20,12 +20,12 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th tal:repeat="c columns">${c.title}</th>
+        <th tal:repeat="c old_columns">${c.title}</th>
     </tr>
     </thead>
     <tbody>
-    <tr tal:repeat="i items">
-        <td tal:repeat="c columns">
+    <tr tal:repeat="i old_items">
+        <td tal:repeat="c old_columns">
             ${i[c.name]}
         </td>
     </tr>
