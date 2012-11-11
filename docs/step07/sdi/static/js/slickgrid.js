@@ -92,7 +92,7 @@
         //        $(e.target).removeClass("ui-state-hover");
         //    });
 
-        $(function () {
+        ////$(function () {
 
             // prepare the data
             var i;
@@ -255,7 +255,7 @@
             });
 
 
-        });
+        ////});
 
 
 
