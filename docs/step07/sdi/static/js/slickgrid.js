@@ -5,11 +5,38 @@
   "use strict"; // jshint ;_;
 
 
+function findDefaultOptions(options, element) {
+    // Fetch the configuration if we have any.
+    // We walk up the DOM from element, and use 
+    // the first existing data attribute with the key configName.
+    // This will serve as default options, that overrides
+    // the static defaults defined by this class.
+    var configName = options.configName;
+    var config;
+    if (configName) {
+        var $el = element;
+        while ($el.length > 0) {
+            config = $el.data(configName);
+            if (config) {
+                break;
+            }
+            $el = $el.parent();
+        }
+    }
+    return config || {};
+}
+
+
  /* SlickGrid PUBLIC CLASS DEFINITION
   * ================================= */
 
   var SlickGrid = function ( element, options ) {
-    options = $.extend(true, {}, $.fn.slickgrid.defaults, options);
+    element = $(element);
+    // More default options can be added as DOM data attribute
+    // allowing a global config, with non-marshallable objects possible in it
+    var moreDefaultOptions = findDefaultOptions(element);
+    options = $.extend(true, {}, 
+        $.fn.slickgrid.defaults, moreDefaultOptions, options);
     this.init('slickgrid', element, options);
   }
 
@@ -18,34 +45,22 @@
 
     constructor: SlickGrid
 
+
   , processColumns: function () {
         var self = this;
         var results = [];
-        // Fetch the configuration if we have any.
-        // We walk up the DOM and use the first data attribute
-        // with the key configName.
-        var configName = this.options.configName;
-        var $el = this.element;
-        var config;
-        while ($el.length > 0) {
-            config = $el.data(configName);
-            if (config) {
-                break;
-            }
-            $el = $el.parent();
-        }
+        var options = this.options;
         $.each(this.options.columns, function(index, columnDef) {
             var defaults = {};
             // id defaults to columnDef.field
             defaults.id = columnDef.field;
-            if (config) {
-                // resolve formatter from map
-                defaults.formatter = config.formatters[columnDef.formatterName];
-                // resolve validator from map
-                defaults.validator = config.validators[columnDef.validatorName];
-                // resolve editor from map
-                defaults.editor = config.editors[columnDef.editorName];
-            }
+            // resolve formatter from map
+            defaults.formatter = options.formatters[columnDef.formatterName];
+            // resolve validator from map
+            defaults.validator = options.validators[columnDef.validatorName];
+            // resolve editor from map
+            defaults.editor = options.editors[columnDef.editorName];
+            // store it
             var newColumnDef = $.extend({}, defaults, columnDef);
             results.push(newColumnDef);
         });
@@ -54,8 +69,8 @@
 
   , init: function (type, element, options) {
         var self = this;
-        this.options = options;
         this.element = $(element);
+        this.options = options;
 
         var dataView;
         var grid;
@@ -293,8 +308,11 @@
   $.fn.slickgrid.Constructor = SlickGrid;
 
   $.fn.slickgrid.defaults = {
-      columns: []
-      //configName: null     // contains non-json parts of column, registered as data with this key. (...)
+      columns: [],
+      //configName: null     // allows more default options, registered as DOM data with this key. (...)
+      formatters: {},
+      validators: {},
+      editors: {}
   }
 
 }(window.jQuery);
