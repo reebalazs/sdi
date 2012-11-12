@@ -20,12 +20,12 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th tal:repeat="c old_columns">${c.name}</th>
+        <th tal:repeat="c widget_options['columns']">${c.name}</th>
     </tr>
     </thead>
     <tbody>
-    <tr tal:repeat="i old_items">
-        <td tal:repeat="c old_columns">
+    <tr tal:repeat="i widget_options['items']">
+        <td tal:repeat="c widget_options['columns']">
             ${i[c.field]}
         </td>
     </tr>

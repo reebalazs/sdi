@@ -3,6 +3,10 @@ import json
 
 from pyramid_layout.panel import panel_config
 
+class JsonDict(dict):
+    def __str__(self):
+        return json.dumps(self)
+
 @panel_config(
     name='header_sitemenu',
     renderer='templates/panel_header_sitemenu.pt'
@@ -79,14 +83,11 @@ def grid(context, request, columns, items,
     #    ];
 
     return dict(
-        old_columns = columns,
-        old_items = items,
-        #
         html_id=html_id,
-        widget_options=json.dumps(dict(
+        widget_options=JsonDict(
             columns = columns,
             configName = config_name,
             slickgridOptions = slickgrid_options,
             items=items,
-        )),
+        ),
     )
