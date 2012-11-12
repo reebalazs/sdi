@@ -1,26 +1,14 @@
 
-/* Mixins to various SlickGrid based components */
+/* Mixins for SlickGrid */
 
 .slickGrid () {
 
     width: 100%;
     position: relative;
 
-    /* to override globals */
-    /*
-    body & .slick-row {
-        line-height: 100%;
-    }
-    */
-
-    ////.slick-viewport {
-    ////}
-
     .slickcell-padding () {
-
         @fontSize: 14px; // ??? should we use some id here?
 
-        /* padding: 0.375em .5em; */
         padding: 5px 7.5834px;
         font-size: @fontSize;
         td {
@@ -29,21 +17,9 @@
         body & {
             line-height: 20px;
         }
-
-        @media only screen and (min-width: 640px) {
-            /* padding: 0.375em 1em; */
-            padding: 5px 15.1667px;
-        }
     }
 
-    /* Repetition of table styles from popper.
-     * We _may_ want to be smarter here, but this is
-     * ok as the SlickGrid generates the markup it wants,
-     * so it is acceptable that we have to roll custom
-     * css to make it work.
-     */
     .grid-canvas {
-
         .slick-row {
             border: 0 none;
             position: absolute;
@@ -59,12 +35,7 @@
         }
         
 
-        /* ... needed because SlickGrid overrides these,
-         * and also we need these styles, originally
-         * applied to "td, th", effective on the cells.
-         * As a consequence we _must_ embed here all
-         * the responsive styles too.
-         */
+        /* XXX ... needed ? */
         .slick-cell {
             .slickcell-padding ();
             a, a:visited, .ui-widget-content a, .ui-widget-content a:visited {
@@ -76,10 +47,6 @@
                 text-decoration: none;
                 border-bottom: none;
             }
-            
-            /* We use tables (d'oh) for vertically aligning any cell */
-            /* Horizontal alignment is, by default, left */
-
             table {
                 height: 100%;
                 border: 0 none;
@@ -92,10 +59,7 @@
                 vertical-align: middle;
                 text-align: left;
             }
-
         }
-
-
     }
  
     .slick-header {
@@ -107,34 +71,30 @@
         background: @tableBackground;
 
         .slick-header-column {
-
-            //height: 24px - (5 + 5);
-            //line-height: 24px - (5 + 5);
             height: 20px;
             line-height: 20px;
 
             margin: 0;
 
-            /* Same padding as with cells, needed 
-             * to override from slickgrid */
+            /* XXX ... needed to override from slickgrid ? */
             &.ui-state-default {
                 .slickcell-padding ();
             }
-
 
             border-right: 1px solid #FFFFFF;
             border-left: 0px;
             border-top: 0px;
             border-bottom: 0px;
 
-            background: none repeat scroll 0 0 #8F806F;
-            color: #DBCFC1;
+            @slickgridHoverHeaderColor: lighten(@textColor, 20%);   // XXX
+            @slickgridSortingHeaderColor: lighten(@textColor, 20%);   // XXX
             
+            //color: lighten(@textColor, 20%);
+
             .reset-columns () {
                 /* like TH  */
                 background: @tableBackground;
                 font-family: @serifFontFamily;
-                /*text-align: left;*/
                 color: @textColor;
                 font-weight: bold;
                 text-shadow: 0 -1px 0 rgba(0,0,0,.4);
@@ -142,7 +102,7 @@
                     color: @textColor;
                 }
                 a:hover {
-                    color: lighten(@textColor, 20%);
+                    color: @slickgridHoverHeaderColor;
                 }    
             }
  
@@ -153,16 +113,14 @@
            
             &.slick-header-column-sorted {
                 font-style: normal;
-                color: lighten(@textColor, 20%);
+                color: @slickgridSortingHeaderColor;
             }
             &:hover {
-                color: lighten(@textColor, 20%);
+                color: @slickgridHoverHeaderColor;
             }
 
             .slick-sort-indicator-asc {
-                ///background-image: none;
                 vertical-align: middle;
-                ///padding: 0 0 0 10px;
                 &:before {
                     border-top: 0;
                     border-bottom: .266666667em solid #fff;
@@ -170,14 +128,11 @@
             }
 
             .slick-sort-indicator-desc {
-                ///background-image: none;
                 vertical-align: middle;
-                ///padding: 0 0 0 10px;
             }
            
         }
     }
-
 
 }
 
