@@ -52,25 +52,39 @@ def grid(context, request, columns, items,
         )
     slickgrid_options.update(slickgrid_options or {})
 
-    # XXX SlickGrid uses a different column description format than the old table.
-    # XXX To begin with, we provide this static definition.
-    columns = [
-        {"id": "sel", "name": "#", "field": "num", "behavior": "select",
-            "cssClass": "cell-selection", "width": 40, "cannotTriggerInsert": True,
-            "resizable": False, "selectable": False},
-        {"id": "title", "name": "Title", "field": "title", "width": 120, "minWidth": 120,
-            "cssClass": "cell-title", "editor": "text",
-            "validator": "required", "sortable": True},
-        {"id": "duration", "name": "Duration", "field": "duration",
-            "editor": "text", "sortable": True},
-        {"id": "start", "name": "Start", "field": "start", "minWidth": 60,
-            "editor": "date", "sortable": True},
-        {"id": "finish", "name": "Finish", "field": "finish", "minWidth": 60,
-            "editor": "date", "sortable": True}
-        ];
+
+    # XXX some help for debugging
+    #
+    # To begin with, we provide this static definition.
+    #columns = [
+    #    { #"id": "author",
+    #        "name": "Author", "field": "author", "width": 120, "minWidth": 120,
+    #        "cssClass": "cell-author", "editor": "text",
+    #        "validator": "required", "sortable": True},
+    #    { #"id": "title",
+    #        "name": "Title", "field": "title", "width": 120, "minWidth": 120,
+    #        "cssClass": "cell-title", "editor": "text",
+    #        "validator": "required", "sortable": True},
+    #    ]
+ 
+    # ... another working example:
+    #columns = [
+    #    {"id": "sel", "name": "#", "field": "num", "behavior": "select",
+    #        "cssClass": "cell-selection", "width": 40, "cannotTriggerInsert": True,
+    #        "resizable": False, "selectable": False},
+    #    {"id": "title", "name": "Title", "field": "title", "width": 120, "minWidth": 120,
+    #        "cssClass": "cell-title", "editor": "text",
+    #        "validator": "required", "sortable": True},
+    #    {"id": "duration", "name": "Duration", "field": "duration",
+    #        "editor": "text", "sortable": True},
+    #    {"id": "start", "name": "Start", "field": "start", "minWidth": 60,
+    #        "editor": "date", "sortable": True},
+    #    {"id": "finish", "name": "Finish", "field": "finish", "minWidth": 60,
+    #        "editor": "date", "sortable": True}
+    #    ];
 
     return dict(
-        old_columns = old_columns,
+        old_columns = columns,
         old_items = old_items,
         #
         html_id=html_id,

@@ -12,16 +12,28 @@ class SampleViews(object):
     @view_config(renderer='templates/contents_view.pt',
                  name='contents')
     def contents_view(self):
+        #columns = [
+        #    dict(
+        #        name='author',
+        #        title='Author'
+        #    ),
+        #    dict(
+        #        name='title',
+        #        title='Title'
+        #    )
+        #]
+        # SlickGrid uses a different column description format than the old table.
         columns = [
-            dict(
-                name='author',
-                title='Author'
-            ),
-            dict(
-                name='title',
-                title='Title'
-            )
-        ]
+            { #"id": "author",
+                "name": "Author", "field": "author", "width": 120, "minWidth": 120,
+                "cssClass": "cell-author", "editor": "text",
+                "validator": "required", "sortable": True},
+            { #"id": "title",
+                "name": "Title", "field": "title", "width": 120, "minWidth": 120,
+                "cssClass": "cell-title", "editor": "text",
+                "validator": "required", "sortable": True},
+            ]
+
         items = []
         for i in range(0, 20):
             items.append(

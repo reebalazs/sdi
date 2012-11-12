@@ -20,13 +20,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th tal:repeat="c old_columns">${c.title}</th>
+        <th tal:repeat="c old_columns">${c.name}</th>
     </tr>
     </thead>
     <tbody>
     <tr tal:repeat="i old_items">
         <td tal:repeat="c old_columns">
-            ${i[c.name]}
+            ${i[c.field]}
         </td>
     </tr>
     </tbody>
