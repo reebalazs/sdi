@@ -1,11 +1,5 @@
-
-<b>Work in progress here.</b>
-<br>
-<br>
-
 <div id="${html_id}" class="slickgrid-wrapper"
      style="width:100%;height:400px"></div>
-
 <script type="text/javascript">
     jQuery(function ($) {
           $('#${html_id}').slickgrid($.extend({}, {
@@ -15,7 +9,11 @@
 </script>
 
 <!-- Keep the old table while we develop, in the bottom. -->
-<hr>
+<hr style="margin-top: 250px;">
+<p>
+  We repeat the original version of the table,
+  for visual comparison of styling.
+</p>
 
 <table class="table table-striped">
     <thead>

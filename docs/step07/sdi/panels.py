@@ -48,6 +48,7 @@ def grid(context, request, columns, items,
         enableCellNavigation = True,
         asyncEditorLoading = True,
         forceFitColumns = True,
+        rowHeight = 37,
         )
     slickgrid_options.update(slickgrid_options or {})
 

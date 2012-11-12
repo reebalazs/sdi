@@ -7504,9 +7504,6 @@ body {
      */
 
 }
-.slickgrid-wrapper .slick-viewport {
-  background: #f2f2f2;
-}
 .slickgrid-wrapper .grid-canvas {
   /* ... needed because SlickGrid overrides these,
          * and also we need these styles, originally
@@ -7522,31 +7519,29 @@ body {
 }
 .slickgrid-wrapper .grid-canvas .slick-cell,
 .slickgrid-wrapper .grid-canvas .slick-headerrow-column {
-  border-top: 1px solid #FFFFFF;
+  border-top: 1px solid #dddddd;
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
 }
-.slickgrid-wrapper .grid-canvas .odd {
+.slickgrid-wrapper .grid-canvas .even {
   background: #f9f9f9;
 }
 .slickgrid-wrapper .grid-canvas .slick-cell {
   /* padding: 0.375em .5em; */
 
   padding: 5px 7.5834px;
-  font-size: 0.889em;
+  font-size: 14px;
   /* We use tables (d'oh) for vertically aligning any cell */
 
   /* Horizontal alignment is, by default, left */
 
 }
 .slickgrid-wrapper .grid-canvas .slick-cell td {
-  font-size: 10.5px;
-  /*font-size: 1em;*/
-
+  font-size: 14px;
 }
 body .slickgrid-wrapper .grid-canvas .slick-cell {
-  line-height: 0.889em;
+  line-height: 20px;
 }
 @media only screen and (min-width: 640px) {
   .slickgrid-wrapper .grid-canvas .slick-cell {
@@ -7588,8 +7583,8 @@ body .slickgrid-wrapper .grid-canvas .slick-cell {
   background: transparent;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column {
-  height: 14px;
-  line-height: 14px;
+  height: 20px;
+  line-height: 20px;
   margin: 0;
   /* Same padding as with cells, needed 
              * to override from slickgrid */
@@ -7614,15 +7609,13 @@ body .slickgrid-wrapper .grid-canvas .slick-cell {
   /* padding: 0.375em .5em; */
 
   padding: 5px 7.5834px;
-  font-size: 0.889em;
+  font-size: 14px;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default td {
-  font-size: 10.5px;
-  /*font-size: 1em;*/
-
+  font-size: 14px;
 }
 body .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
-  line-height: 0.889em;
+  line-height: 20px;
 }
 @media only screen and (min-width: 640px) {
   .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
@@ -7636,7 +7629,7 @@ body .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-defa
   color: #333333;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column a:hover {
-  color: #fff;
+  color: #666666;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
   /* like TH  */
@@ -7654,26 +7647,22 @@ body .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-defa
   color: #333333;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default a:hover {
-  color: #fff;
+  color: #666666;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column.slick-header-column-sorted {
   font-style: normal;
-  color: #fff;
+  color: #666666;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column:hover {
-  color: #fff;
+  color: #666666;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column .slick-sort-indicator-asc {
-  background-image: none;
   vertical-align: middle;
-  padding: 0 0 0 10px;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column .slick-sort-indicator-asc:before {
   border-top: 0;
   border-bottom: .266666667em solid #fff;
 }
 .slickgrid-wrapper .slick-header-columns .slick-header-column .slick-sort-indicator-desc {
-  background-image: none;
   vertical-align: middle;
-  padding: 0 0 0 10px;
 }
