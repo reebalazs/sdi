@@ -20,15 +20,21 @@
         }
     }
 
-    // mapping of all the functions we want to use in a column
-    // definition if we send it from the server via JSON
+    // mapping of all the default options that configure the behavior
+    // of the grid. If your workflow is to marshall the options
+    // from the server encoded as JSON, then this is the place where
+    // you can specify those options that contain non-JSON marshallable
+    // objects (such as, functions).
+    // This data will be looked up from the node where the grid is bound
+    // to, and its parent nodes. This allows for multiple configurations
+    // inside a project.
     $(document).data('slickgrid-config', {
         editors: {
             text: Slick.Editors.Text,
             date: Slick.Editors.Date
         },
-        formatters: {
-        },
+        //formatters: {
+        //},
         validators: {
             required: requiredFieldValidator
         }
