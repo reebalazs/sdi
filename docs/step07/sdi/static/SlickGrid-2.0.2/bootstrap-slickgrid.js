@@ -69,8 +69,8 @@
 
   , createDataView: function () {
         // Create a data view, if the options.data is not specified.
-        if (this.options.data !== undefined) {
-            this.dataView = this.options.data;
+        if (this.options.dataView !== undefined) {
+            this.dataView = this.options.dataView;
         } else {
             this.dataView = new Slick.Data.DataView({inlineFilters: true});
         }
@@ -128,6 +128,8 @@
       // handleCreate: function() {}; -- This is called after the grid is created,
       //                                 and can be used to customize the grid.
       //                                 The function can access this.grid, this.dataView, ...
+      // dataView: null  -- if this is not specified, we will create one
+      //                    and store it in this.dataView.
   }
 
 }(window.jQuery);
