@@ -45,12 +45,12 @@ def grid(context, request, columns, items,
     slickgrid_options = dict(
         # default options for SlickGrid come here
         editable = False,
-        enableAddRow = True,
+        enableAddRow = False,
         enableCellNavigation = True,
         asyncEditorLoading = True,
-        forceFitColumns = False,
-        ).update(slickgrid_options or {})
-
+        forceFitColumns = True,
+        )
+    slickgrid_options.update(slickgrid_options or {})
 
     # XXX SlickGrid uses a different column description format than the old table.
     # XXX To begin with, we provide this static definition.
@@ -68,7 +68,6 @@ def grid(context, request, columns, items,
         {"id": "finish", "name": "Finish", "field": "finish", "minWidth": 60,
             "editor": "date", "sortable": True}
         ];
-
 
     return dict(
         old_columns = old_columns,

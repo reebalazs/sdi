@@ -5,7 +5,7 @@
   "use strict"; // jshint ;_;
 
 
-function findDefaultOptions(options, element) {
+  function findDefaultOptions(element, options) {
     // Fetch the configuration if we have any.
     // We walk up the DOM from element, and use 
     // the first existing data attribute with the key configName.
@@ -24,7 +24,7 @@ function findDefaultOptions(options, element) {
         }
     }
     return config || {};
-}
+  }
 
 
  /* SlickGrid PUBLIC CLASS DEFINITION
@@ -34,10 +34,10 @@ function findDefaultOptions(options, element) {
     element = $(element);
     // More default options can be added as DOM data attribute
     // allowing a global config, with non-marshallable objects possible in it
-    var moreDefaultOptions = findDefaultOptions(element);
-    options = $.extend(true, {}, 
+    var moreDefaultOptions = findDefaultOptions(element, options);
+    var cookedOptions = $.extend(true, {}, 
         $.fn.slickgrid.defaults, moreDefaultOptions, options);
-    this.init('slickgrid', element, options);
+    this.init('slickgrid', element, cookedOptions);
   }
 
 
@@ -67,228 +67,39 @@ function findDefaultOptions(options, element) {
         return results;
     }
 
+  , createDataView: function () {
+        // Create a data view, if the options.data is not specified.
+        if (this.options.data !== undefined) {
+            this.dataView = this.options.data;
+        } else {
+            this.dataView = new Slick.Data.DataView({inlineFilters: true});
+        }
+    }
+        
+  , createGrid: function () {
+        this.grid = new Slick.Grid(this.element, this.dataView, this.columns, this.options.slickgridOptions);
+    }
+
   , init: function (type, element, options) {
         var self = this;
         this.element = $(element);
         this.options = options;
 
-        var dataView;
-        var grid;
-        var data = [];
-
         // Resolve non-JSON marshallable functions
         this.columns = this.processColumns();
-
+        // Save original column defs, too.
         this.origColumns = this.columns.slice();
 
-        var sortcol = "title";
-        var sortdir = 1;
-        var searchString = "";
-        function myFilter(item, args) {
-            if (args.searchString !== "" &&
-                    item["title"].indexOf(args.searchString) == -1) {
-                return false;
-            }
-
-            return true;
+        // Create the data view.
+        this.createDataView();
+        // Create the grid.
+        this.createGrid();
+        // Call the provided hook to post-process.
+        var handleCreate = this.options.handleCreate;
+        if (handleCreate !== undefined) {
+            handleCreate.apply(this);
         }
-
-
-        function comparer(a, b) {
-            var x = a[sortcol], y = b[sortcol];
-            return (x == y ? 0 : (x > y ? 1 : -1));
-        }
-
-        //function toggleFilterRow() {
-        //    if ($(grid.getTopPanel()).is(":visible")) {
-        //        grid.hideTopPanel();
-        //    } else {
-        //       grid.showTopPanel();
-        //    }
-        //}
-
-
-        //$(".grid-header .ui-icon")
-        //    .addClass("ui-state-default ui-corner-all")
-        //    .mouseover(function (e) {
-        //        $(e.target).addClass("ui-state-hover");
-        //    })
-        //    .mouseout(function (e) {
-        //        $(e.target).removeClass("ui-state-hover");
-        //    });
-
-        ////$(function () {
-
-            // prepare the data
-            var i;
-            for (i = 0; i < 5000; i++) {
-                var d = (data[i] = {});
-
-                d["id"] = "id_" + i;
-                d["num"] = i;
-                d["title"] = "Task " + i;
-                d["duration"] = "5 days";
-                d["start"] = "01/01/2009";
-                d["finish"] = "01/05/2009";
-            }
-
-
-            var html_id = 'sdi-0000'; // XXX XXX Now just manually...
-
-            dataView = new Slick.Data.DataView({inlineFilters: true});
-            grid = new Slick.Grid($('#' + html_id), dataView, this.columns, this.options.slickgridOptions);
-            grid.setSelectionModel(new Slick.RowSelectionModel());
-
-            var columnpicker = new Slick.Controls.ColumnPicker(
-                    this.columns, grid, this.options.slickgridOptions);
-
-
-            // move the filter panel defined in a hidden div into grid top panel
-            //$("#inlineFilterPanel")
-            //    .appendTo(grid.getTopPanel())
-            //    .show();
-
-            grid.onCellChange.subscribe(function (e, args) {
-                dataView.updateItem(args.item.id, args.item);
-            });
-
-            grid.onAddNewRow.subscribe(function (e, args) {
-                var item = {
-                    "num": data.length, 
-                    "id": "new_" + (Math.round(Math.random() * 10000)),
-                    "title": "New task",
-                    "duration": "1 day",
-                    "start": "01/01/2009",
-                    "finish": "01/01/2009"
-                };
-                $.extend(item, args.item);
-                dataView.addItem(item);
-            });
-
-            grid.onKeyDown.subscribe(function (e) {
-                // select all rows on ctrl-a
-                if (e.which != 65 || !e.ctrlKey) {
-                    return false;
-                }
-
-                var rows = [];
-                var i;
-                for (i = 0; i < dataView.getLength(); i++) {
-                    rows.push(i);
-                }
-
-                grid.setSelectedRows(rows);
-                e.preventDefault();
-            });
-
-            grid.onSort.subscribe(function (e, args) {
-                sortdir = args.sortAsc ? 1 : -1;
-                sortcol = args.sortCol.field;
-
-                dataView.sort(comparer, args.sortAsc);
-            });
-
-            // wire up model events to drive the grid
-            dataView.onRowCountChanged.subscribe(function (e, args) {
-                grid.updateRowCount();
-                grid.render();
-            });
-
-            dataView.onRowsChanged.subscribe(function (e, args) {
-                grid.invalidateRows(args.rows);
-                grid.render();
-            });
-
-            var h_runfilters = null;
-
-            function updateFilter() {
-                dataView.setFilterArgs({
-                    searchString: searchString
-                });
-                dataView.refresh();
-            }
-
-
-            // wire up the search textbox to apply the filter to the model
-            $("#txtSearch,#txtSearch2").keyup(function (e) {
-                Slick.GlobalEditorLock.cancelCurrentEdit();
-
-                // clear on Esc
-                if (e.which == 27) {
-                    this.value = "";
-                }
-
-                searchString = this.value;
-                updateFilter();
-            });
-
-            $("#btnSelectRows").click(function () {
-                if (!Slick.GlobalEditorLock.commitCurrentEdit()) {
-                    return;
-                }
-
-                var rows = [];
-                var i;
-                for (i = 0; i < 10 && i < dataView.getLength(); i++) {
-                    rows.push(i);
-                }
-
-                grid.setSelectedRows(rows);
-            });
-
-
-            // initialize the model after all the events have been hooked up
-            dataView.beginUpdate();
-            dataView.setItems(data);
-            //dataView.setFilterArgs({
-            //    searchString: searchString
-            //});
-            //dataView.setFilter(myFilter);
-            dataView.endUpdate();
-
-            // autosize first
-            grid.autosizeColumns();
-
-            // autoresize columns
-            var timer;
-            $(window).resize(function (evt) {
-                if (timer !== null) {
-                    clearTimeout(timer);
-                }
-                timer = setTimeout(function () {
-                    var width = $(window).width();
-                    var wide = (width > 768); // ipad orientation narrow / wide
-                    // Hide or show the last two columns, based on the layout.
-                    // XXX this is a little rough... we'd need to be smarter here
-                    // to conserve our current columns sizes and order.
-                    if (wide) {
-                        if (self.columns.length < 5) {
-                            self.columns.push(self.origColumns[3]);
-                            self.columns.push(self.origColumns[4]);
-                        }
-                    } else {
-                        if (self.columns.length > 3) {
-                            self.columns = self.origColumns.slice(0, 3);
-                        }
-                    }
-
-                    // and resize.
-                    grid.setColumns(self.columns);
-                    grid.autosizeColumns();
-                    timer = null;
-                }, 400);
-            });
-
-
-        ////});
-
-
-
-
-
-
     }
-
 
   };
 
@@ -308,11 +119,15 @@ function findDefaultOptions(options, element) {
   $.fn.slickgrid.Constructor = SlickGrid;
 
   $.fn.slickgrid.defaults = {
+      slickgridOptions: {},
       columns: [],
       //configName: null     // allows more default options, registered as DOM data with this key. (...)
       formatters: {},
       validators: {},
       editors: {}
+      // handleCreate: function() {}; -- This is called after the grid is created,
+      //                                 and can be used to customize the grid.
+      //                                 The function can access this.grid, this.dataView, ...
   }
 
 }(window.jQuery);
