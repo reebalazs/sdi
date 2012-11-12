@@ -22,6 +22,7 @@ class SampleViews(object):
         #        title='Title'
         #    )
         #]
+
         # SlickGrid uses a different column description format than the old table.
         columns = [
             { #"id": "author",
@@ -34,10 +35,13 @@ class SampleViews(object):
                 "validator": "required", "sortable": True},
             ]
 
+        # The items format is similar with one exception: SlickGrid requires a valid
+        # row id for each row.
         items = []
         for i in range(0, 20):
             items.append(
                 dict(
+                    id=i,
                     title="Item %s" % i,
                     author="Author %s" % i
                 )

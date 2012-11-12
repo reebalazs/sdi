@@ -69,20 +69,6 @@
                 return (x == y ? 0 : (x > y ? 1 : -1));
             }
 
-            // prepare the data
-            var data = [];
-            var i;
-            for (i = 0; i < 5000; i++) {
-                var d = (data[i] = {});
-
-                d["id"] = "id_" + i;
-                d["num"] = i;
-                d["title"] = "Task " + i;
-                d["duration"] = "5 days";
-                d["start"] = "01/01/2009";
-                d["finish"] = "01/05/2009";
-            }
-
 
             grid.setSelectionModel(new Slick.RowSelectionModel());
 
@@ -129,7 +115,7 @@
 
             // initialize the model after all the events have been hooked up
             dataView.beginUpdate();
-            dataView.setItems(data);
+            dataView.setItems(this.options.items);
             dataView.setFilterArgs({
                 searchString: searchString
             });

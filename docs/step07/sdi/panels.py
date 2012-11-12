@@ -34,11 +34,6 @@ def grid(context, request, columns, items,
         slickgrid_options=None,   # options dict will be passed to js widget
         config_name='slickgrid-config',  # uses config defined in slickgrid-config.js as a data attribute
         ):
-    # Show a grid with the columns and items
-    # XXX right now they are ignored though
-    old_columns = columns
-    old_items = items
-
     layout = request.layout_manager.layout
     html_id = layout.html_id(html_id=html_id)    # autogenerate id if needed
     layout.select_client_component('slickgrid')
@@ -85,13 +80,13 @@ def grid(context, request, columns, items,
 
     return dict(
         old_columns = columns,
-        old_items = old_items,
+        old_items = items,
         #
         html_id=html_id,
         widget_options=json.dumps(dict(
             columns = columns,
             configName = config_name,
             slickgridOptions = slickgrid_options,
-            #items=items,
+            items=items,
         )),
     )
