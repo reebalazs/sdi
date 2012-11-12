@@ -27,12 +27,12 @@ class SampleViews(object):
         columns = [
             { #"id": "author",
                 "name": "Author", "field": "author", "width": 120, "minWidth": 120,
-                "cssClass": "cell-author", "editor": "text",
-                "validator": "required", "sortable": True},
+                "cssClass": "cell-author", "editorName": "text",
+                "validatorName": "required", "sortable": True},
             { #"id": "title",
                 "name": "Title", "field": "title", "width": 120, "minWidth": 120,
-                "cssClass": "cell-title", "editor": "text",
-                "validator": "required", "sortable": True},
+                "cssClass": "cell-title", "editorName": "text",
+                "validatorName": "required", "sortable": True},
             ]
 
         # The items format is similar with one exception: SlickGrid requires a valid

@@ -59,12 +59,12 @@ def grid(context, request, columns, items,
     #columns = [
     #    { #"id": "author",
     #        "name": "Author", "field": "author", "width": 120, "minWidth": 120,
-    #        "cssClass": "cell-author", "editor": "text",
-    #        "validator": "required", "sortable": True},
+    #        "cssClass": "cell-author", "editorName": "text",
+    #        "validatorName": "required", "sortable": True},
     #    { #"id": "title",
     #        "name": "Title", "field": "title", "width": 120, "minWidth": 120,
-    #        "cssClass": "cell-title", "editor": "text",
-    #        "validator": "required", "sortable": True},
+    #        "cssClass": "cell-title", "editorName": "text",
+    #        "validatorName": "required", "sortable": True},
     #    ]
  
     # ... another working example:
@@ -73,14 +73,14 @@ def grid(context, request, columns, items,
     #        "cssClass": "cell-selection", "width": 40, "cannotTriggerInsert": True,
     #        "resizable": False, "selectable": False},
     #    {"id": "title", "name": "Title", "field": "title", "width": 120, "minWidth": 120,
-    #        "cssClass": "cell-title", "editor": "text",
-    #        "validator": "required", "sortable": True},
+    #        "cssClass": "cell-title", "editorName": "text",
+    #        "validatorName": "required", "sortable": True},
     #    {"id": "duration", "name": "Duration", "field": "duration",
-    #        "editor": "text", "sortable": True},
+    #        "editorName": "text", "sortable": True},
     #    {"id": "start", "name": "Start", "field": "start", "minWidth": 60,
-    #        "editor": "date", "sortable": True},
+    #        "editorName": "date", "sortable": True},
     #    {"id": "finish", "name": "Finish", "field": "finish", "minWidth": 60,
-    #        "editor": "date", "sortable": True}
+    #        "editorName": "date", "sortable": True}
     #    ];
 
     return dict(
