@@ -7484,3 +7484,196 @@ body {
     overflow: visible !important;
   }
 }
+/* Mixins to various SlickGrid based components */
+.slickgrid-wrapper {
+  width: 100%;
+  position: relative;
+  /* to override globals */
+
+  /*
+    body & .slick-row {
+        line-height: 100%;
+    }
+    */
+
+  /* Repetition of table styles from popper.
+     * We _may_ want to be smarter here, but this is
+     * ok as the SlickGrid generates the markup it wants,
+     * so it is acceptable that we have to roll custom
+     * css to make it work.
+     */
+
+}
+.slickgrid-wrapper .slick-viewport {
+  background: #f2f2f2;
+}
+.slickgrid-wrapper .grid-canvas {
+  /* ... needed because SlickGrid overrides these,
+         * and also we need these styles, originally
+         * applied to "td, th", effective on the cells.
+         * As a consequence we _must_ embed here all
+         * the responsive styles too.
+         */
+
+}
+.slickgrid-wrapper .grid-canvas .slick-row {
+  border: 0 none;
+  position: absolute;
+}
+.slickgrid-wrapper .grid-canvas .slick-cell,
+.slickgrid-wrapper .grid-canvas .slick-headerrow-column {
+  border-top: 1px solid #FFFFFF;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.slickgrid-wrapper .grid-canvas .odd {
+  background: #f9f9f9;
+}
+.slickgrid-wrapper .grid-canvas .slick-cell {
+  /* padding: 0.375em .5em; */
+
+  padding: 5px 7.5834px;
+  font-size: 0.889em;
+  /* We use tables (d'oh) for vertically aligning any cell */
+
+  /* Horizontal alignment is, by default, left */
+
+}
+.slickgrid-wrapper .grid-canvas .slick-cell td {
+  font-size: 10.5px;
+  /*font-size: 1em;*/
+
+}
+body .slickgrid-wrapper .grid-canvas .slick-cell {
+  line-height: 0.889em;
+}
+@media only screen and (min-width: 640px) {
+  .slickgrid-wrapper .grid-canvas .slick-cell {
+    /* padding: 0.375em 1em; */
+  
+    padding: 5px 15.1667px;
+  }
+}
+.slickgrid-wrapper .grid-canvas .slick-cell a,
+.slickgrid-wrapper .grid-canvas .slick-cell a:visited,
+.slickgrid-wrapper .grid-canvas .slick-cell .ui-widget-content a,
+.slickgrid-wrapper .grid-canvas .slick-cell .ui-widget-content a:visited {
+  color: #0088cc;
+  text-decoration: none;
+}
+.slickgrid-wrapper .grid-canvas .slick-cell a:hover,
+.slickgrid-wrapper .grid-canvas .slick-cell .ui-widget-content a:hover {
+  color: #33bbff;
+  text-decoration: none;
+  border-bottom: none;
+}
+.slickgrid-wrapper .grid-canvas .slick-cell table {
+  height: 100%;
+  border: 0 none;
+  padding: 0;
+  background: none;
+}
+.slickgrid-wrapper .grid-canvas .slick-cell td {
+  border: 0 none;
+  padding: 0;
+  vertical-align: middle;
+  text-align: left;
+}
+.slickgrid-wrapper .slick-header {
+  border-top: 0;
+  border-bottom: 0;
+}
+.slickgrid-wrapper .slick-header-columns {
+  background: transparent;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column {
+  height: 14px;
+  line-height: 14px;
+  margin: 0;
+  /* Same padding as with cells, needed 
+             * to override from slickgrid */
+
+  border-right: 1px solid #FFFFFF;
+  border-left: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  background: none repeat scroll 0 0 #8F806F;
+  color: #DBCFC1;
+  /* like TH  */
+
+  background: transparent;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /*text-align: left;*/
+
+  color: #333333;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
+  /* padding: 0.375em .5em; */
+
+  padding: 5px 7.5834px;
+  font-size: 0.889em;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default td {
+  font-size: 10.5px;
+  /*font-size: 1em;*/
+
+}
+body .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
+  line-height: 0.889em;
+}
+@media only screen and (min-width: 640px) {
+  .slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
+    /* padding: 0.375em 1em; */
+  
+    padding: 5px 15.1667px;
+  }
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column a,
+.slickgrid-wrapper .slick-header-columns .slick-header-column a:visited {
+  color: #333333;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column a:hover {
+  color: #fff;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default {
+  /* like TH  */
+
+  background: transparent;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /*text-align: left;*/
+
+  color: #333333;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default a,
+.slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default a:visited {
+  color: #333333;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column.ui-state-default a:hover {
+  color: #fff;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column.slick-header-column-sorted {
+  font-style: normal;
+  color: #fff;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column:hover {
+  color: #fff;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column .slick-sort-indicator-asc {
+  background-image: none;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column .slick-sort-indicator-asc:before {
+  border-top: 0;
+  border-bottom: .266666667em solid #fff;
+}
+.slickgrid-wrapper .slick-header-columns .slick-header-column .slick-sort-indicator-desc {
+  background-image: none;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}

@@ -147,7 +147,7 @@
 <script type="text/javascript" defer
         src="${layout.sg_url('controls/slick.columnpicker.js')}"></script>
 <script type="text/javascript" defer
-        src="${layout.sg_url('bootstrap-slickgrid.js')}"></script>
+        src="${layout.sg_url('bootstrap/bootstrap-slickgrid.js')}"></script>
 <script type="text/javascript" defer
         src="${layout.sdi_js('slickgrid-config.js')}"></script>
 </tal:component>
